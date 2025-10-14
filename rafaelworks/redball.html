@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Шарик со случайным перемещением</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <style>
+        #canvas {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas"></div>
+
+    <script>
+
+        var paper = Raphael("canvas", 400, 400);
+        
+ 
+        var ball = paper.circle(50, 50, 20);
+        ball.attr({
+            fill: "red",
+            stroke: "#000",
+            "stroke-width": 2
+        });
+
+
+        function getRandomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+
+        function moveBallToRandomPosition() {
+
+            var radius = getRandomNumber(15, 35);
+            var maxX = 400 - radius;
+            var maxY = 400 - radius;
+            var min = radius;
+            
+            var randomX = getRandomNumber(min, maxX);
+            var randomY = getRandomNumber(min, maxY);
+            
+
+            ball.animate({
+                cx: randomX,
+                cy: randomY,
+                r: radius
+            }, 1000, "ease-in-out");
+        }
+
+
+        ball.click(moveBallToRandomPosition);
+        
+
+        paper.canvas.onclick = function(event) {
+
+            if (event.target.tagName !== 'circle') {
+                moveBallToRandomPosition();
+            }
+        };
+
+
+        setTimeout(moveBallToRandomPosition, 500);
+    </script>
+</body>
+</html>

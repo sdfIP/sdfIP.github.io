@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>График функции y = x²</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+    <style>
+        #canvas {
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas"></div>
+
+    <script>
+        var paper = Raphael("canvas", 600, 400);
+        var width = 600, height = 400;
+
+
+        function scaleX(x) { 
+            return width / 2 + x * 30; 
+        }
+        
+        function scaleY(y) { 
+            return height / 2 - y * 30; 
+        }
+
+
+        // Ось X
+        paper.path("M" + scaleX(-10) + "," + scaleY(0) + "L" + scaleX(10) + "," + scaleY(0))
+              .attr({stroke: "#000", "stroke-width": 2});
+        
+        // Ось Y
+        paper.path("M" + scaleX(0) + "," + scaleY(-10) + "L" + scaleX(0) + "," + scaleY(10))
+              .attr({stroke: "#000", "stroke-width": 2});
+        
+
+        paper.path("M" + scaleX(9.5) + "," + scaleY(0.5) + "L" + scaleX(10) + "," + scaleY(0) + "L" + scaleX(9.5) + "," + scaleY(-0.5))
+              .attr({stroke: "#000", "stroke-width": 2});
+        
+
+        paper.path("M" + scaleX(-0.5) + "," + scaleY(9.5) + "L" + scaleX(0) + "," + scaleY(10) + "L" + scaleX(0.5) + "," + scaleY(9.5))
+              .attr({stroke: "#000", "stroke-width": 2});
+
+
+        paper.text(scaleX(10.5), scaleY(0), "X").attr({"font-size": 14});
+        paper.text(scaleX(0.5), scaleY(10.5), "Y").attr({"font-size": 14});
+
+
+        for (var i = -5; i <= 5; i++) {
+            if (i !== 0) {
+
+                paper.path("M" + scaleX(i) + "," + (scaleY(0) - 5) + "L" + scaleX(i) + "," + (scaleY(0) + 5))
+                      .attr({stroke: "#000"});
+                paper.text(scaleX(i), scaleY(0) + 15, i).attr({"font-size": 12});
+                
+
+                paper.path("M" + (scaleX(0) - 5) + "," + scaleY(i) + "L" + (scaleX(0) + 5) + "," + scaleY(i))
+                      .attr({stroke: "#000"});
+                paper.text(scaleX(0) - 15, scaleY(i), i).attr({"font-size": 12});
+            }
+        }
+
+        paper.text(scaleX(0) - 10, scaleY(0) + 15, "0").attr({"font-size": 12});
+
+
+        var pathString = "";
+        for (var x = -5; x <= 5; x += 0.1) {
+            var y = x * x;
+            var px = scaleX(x);
+            var py = scaleY(y);
+            
+            if (x === -5) {
+                pathString += "M " + px + "," + py;
+            } else {
+                pathString += " L " + px + "," + py;
+            }
+        }
+
+
+        var graph = paper.path(pathString);
+        graph.attr({
+            stroke: "#e91e63", 
+            "stroke-width": 3
+        });
+
+
+        paper.text(scaleX(3), scaleY(8), "y = x²")
+             .attr({"font-size": 16, "fill": "#e91e63"});
+    </script>
+</body>
+</html>

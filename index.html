@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Работы | Мосягин Глеб ИС-3.1</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body {
+            background: #0f1a1f;
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 30px;
+        }
+
+        /* Минималистичный заголовок */
+        .page-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .page-title h1 {
+            color: #74c69d;
+            font-size: 3.5em;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .title-info {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .title-date {
+            color: rgba(255, 255, 255, 0.4);
+            font-style: italic;
+        }
+
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: #74c69d;
+            margin: 20px auto;
+            opacity: 0.5;
+        }
+
+        /* Вертикальный список работ */
+        .works-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .work-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 30px 40px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(116, 198, 157, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .work-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: #74c69d;
+            transform: translateX(10px);
+        }
+
+        .work-item:hover::before {
+            left: 100%;
+        }
+
+        .work-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .work-name {
+            font-size: 1.8em;
+            font-weight: 300;
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+
+        .work-item:hover .work-name {
+            color: #74c69d;
+        }
+
+        .work-number {
+            color: rgba(116, 198, 157, 0.3);
+            font-size: 1.2em;
+            font-weight: 300;
+        }
+
+        /* Дата внизу */
+        .start-date {
+            text-align: center;
+            margin-top: 80px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 1.1em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Эффекты для мобильных */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .page-title h1 {
+                font-size: 2.5em;
+            }
+            
+            .work-item {
+                padding: 25px 20px;
+            }
+            
+            .work-name {
+                font-size: 1.4em;
+            }
+        }
+
+        /* Анимация появления элементов */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .work-item {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .work-item:nth-child(1) { animation-delay: 0.1s; }
+        .work-item:nth-child(2) { animation-delay: 0.2s; }
+        .work-item:nth-child(3) { animation-delay: 0.3s; }
+        .work-item:nth-child(4) { animation-delay: 0.4s; }
+        .work-item:nth-child(5) { animation-delay: 0.5s; }
+        .work-item:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Скрываем изображение если нет */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-title">
+            <h1>Работы</h1>
+            <div class="title-info">Мосягин Г.А. ИС-3.1</div>
+            <div class="title-info">Портфолио учебных работ</div>
+            <div class="title-date">Начало обучения: 17.09</div>
+        </div>
+
+        <div class="works-list">
+            <div class="work-item">
+                <a href="script.html" class="work-link">
+                    <span class="work-name">Работа 1</span>
+                    <span class="work-number">01</span>
+                </a>
+            </div>
+            
+            <div class="work-item">
+                <a href="guesthenumber.html" class="work-link">
+                    <span class="work-name">Угадай число</span>
+                    <span class="work-number">02</span>
+                </a>
+            </div>
+            
+            <div class="work-item">
+                <a href="arraytest.html" class="work-link">
+                    <span class="work-name">Тест массивы</span>
+                    <span class="work-number">03</span>
+                </a>
+            </div>
+            
+            <div class="work-item">
+                <a href="guesnumbersepareted/index2.html" class="work-link">
+                    <span class="work-name">Угадай число2</span>
+                    <span class="work-number">04</span>
+                </a>
+            </div>
+            
+            <div class="work-item">
+                <a href="rafaelworks/smile.html" class="work-link">
+                    <span class="work-name">Рафаель1</span>
+                    <span class="work-number">05</span>
+                </a>
+            </div>
+
+            <div class="work-item">
+                <a href="rafaelworks/redball.html" class="work-link">
+                    <span class="work-name">Рафаель2</span>
+                    <span class="work-number">07</span>
+                </a>
+            </div>
+
+            <div class="work-item">
+                <a href="rafaelworks/function.html" class="work-link">
+                    <span class="work-name">Рафаель функция</span>
+                    <span class="work-number">08</span>
+                </a>
+            </div>
+            
+            <div class="work-item">
+                <a href="1.html" class="work-link">
+                    <span class="work-name">Работа 9</span>
+                    <span class="work-number">09</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="start-date">
+            Начало 17.09
+        </div>
+    </div>
+
+    <script>
+        // Скрываем изображение если оно не загружено
+        document.addEventListener('DOMContentLoaded', function() {
+            const img = document.querySelector('img');
+            if (img) {
+                img.addEventListener('error', function() {
+                    this.classList.add('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
